@@ -1,0 +1,57 @@
+{% extends 'home.html.twig' %}
+{% block title %} Простая CMS на Symfony {% endblock %}
+{% block body %}
+    <ul id="headlines">
+        {% for article in articles %}
+        <li>
+            <h2>
+                <span class="pubDate">
+                    {{ article.publicationDate|date('j F') }}
+                </span>
+                <a href="{{ path('app_homepage_article', {'id': article.id}) }}"> {{ article.title }}</a>
+                <span class="category">
+                    in
+                     <a href="{{ path('app_article_category', {'id': article.Category.id ?? 0}) }}">
+                         {{ article.Category ?? "Без категории" }}
+                     </a>
+                </span>
+                <span class="category">
+                    Подкатегория
+                    <a href="{{ path('app_article_subcategory', {'id':article.Subcategory.id ?? 0}) }}">
+                        {{ article.Subcategory ?? "Без подкатегории" }}
+                    </a>
+                </span>
+            </h2>
+        <p class="summary{{ article.id }}">
+            {{ article.content|length > 50 ? article.content[:50] ~ '...' : article.content }}
+        </p>
+        {% if article.users|length %}
+            <p class="category" id="authors">
+            {% if article.users|length %}
+                <p class="category" id="authors">
+                    Автор{{ article.users|length > 1 ? 'ы' : '' }}:
+                    {{ article.users|map(user => user.login)|join(', ') }}
+                </p>
+            {% endif %}
+
+            </p>
+        {% endif %}
+            <img id="loader-identity" src="{{ asset('js/ajax-loader.gif') }}" alt="gif">
+            <ul class="ajax-load">
+                <li>
+                    <a href="" class="ajaxArticleBodyByPost" data-contentId="{{ article.id }}">
+                        Показать продолжение (POST)
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="ajaxArticleBodyByGet" data-contentId="{{ article.id }}">
+                        Показать продолжение (GET)
+                    </a>
+                </li>
+            </ul>
+            <a href="{{ path('app_homepage_article', {'id': article.id}) }}" class="showContent">Показать полностью</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <p><a href="{{ path('app_homepage_archive') }}">Article Archive</a></p>
+{% endblock %}

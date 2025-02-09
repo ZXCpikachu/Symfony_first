@@ -1,0 +1,30 @@
+{% extends 'home.html.twig' %}
+
+{% block title %}{{ article.title }} | Простая CMS{% endblock %}
+
+{% block body %}
+    <h1 id="width75">{{ article.title }}</h1>
+    <div id="width75" class="_italic">{{ article.summary }}</div>
+    <div id="width75">{{ article.content }}</div>
+    <p class="pubDate">Published on {{ article.publicationDate|date('j F Y') }}
+        in
+        <a href="{{ path('app_article_Category', {'id': article.Category.id ?? 0}) }}">
+            {{ article.Category ?? "Без категории" }}
+        </a>
+        _
+        <a href="{{ path('app_article_Subcategory', {'id': article.Subcategory.id ?? 0}) }}">
+            {{ article.Subcategory ?? "Без подкатегории" }}
+        </a>
+    </p>
+    {% if article.users|length %}
+        <p class="_italic">
+        {% if article.users|length %}
+            <p class="category" id="authors">
+                Автор{{ article.users|length > 1 ? 'ы' : '' }}:
+                {{ article.users|map(user => user.login)|join(', ') }}
+            </p>
+        {% endif %}
+        </p>
+    {% endif %}
+    <p><a href="{{ path('app_homepage') }}">Вернуться на главную страницу</a></p>
+{% endblock %}

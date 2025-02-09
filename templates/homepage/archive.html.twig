@@ -1,0 +1,44 @@
+{% extends 'home.html.twig' %}
+
+{% block title %}{{ pageHeading }} | Widget News{% endblock %}
+
+{% block body %}
+    <h1>{{ pageHeading }}</h1>
+    <h3 class="categoryDescription">{{ description ?? ' '}}</h3>
+    <ul id="headlines" class="archive">
+        {% for article in articles %}
+            <li>
+                <h2>
+                    <span class="pubDate">
+                        {{ article.publicationDate|date('j F') }}
+                    </span>
+                    <a href="{{ path('app_homepage_article', {'id': article.id}) }}">{{ article.title }}</a>
+                    <span class="category">
+                        in
+                        <a href="{{ path('app_article_category', {'id': article.category.id ?? 0}) }}">
+                            {{ article.category ?? "Без категории" }}
+                        </a>
+                    </span>
+                    <span class="category">
+                        Подкатегория
+                        <a href="{{ path('app_article_subcategory', {'id': article.subcategory.id ?? 0}) }}">
+                            {{ article.subcategory ?? "Без подкатегории" }}
+                        </a>
+                    </span>
+                </h2>
+                <p class="summary{{ article.id }}">{{ article.summary }}</p>
+                {% if article.users|length %}
+                    <p class="category" id="authors">
+                    {% if article.users|length %}
+                        <p class="category" id="authors">
+                            Автор{{ article.users|length > 1 ? 'ы' : '' }}:
+                            {{ article.users|map(user => user.login)|join(', ') }}
+                        </p>
+                    {% endif %}
+                    {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <p>{{ articles|length }} article{{ articles|length > 1 ? 's' }} in total.</p>
+    <p><a href="{{ path('app_homepage') }}">Return to Homepage</a></p>
+{% endblock %}

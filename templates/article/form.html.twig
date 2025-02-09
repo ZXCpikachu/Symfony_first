@@ -1,0 +1,40 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/custom_css.css') }}"/>
+{% endblock %}
+{{ form_start(form) }}
+<div class="form-group">
+    {{ form_label(form.title) }}
+    {{ form_widget(form.title, {'attr': {'class': 'form-control', 'placeholder': 'Название статьи'}}) }}
+</div>
+<div class="form-group">
+    {{ form_label(form.summary) }}
+    {{ form_widget(form.summary, {'attr': {'class': 'form-control', 'placeholder': 'Краткое содержание статьи', 'rows': 3}}) }}
+</div>
+<div class="form-group">
+    {{ form_label(form.content) }}
+    {{ form_widget(form.content, {'attr': {'class': 'form-control', 'placeholder': 'Содержимое статьи', 'rows': 12}}) }}
+</div>
+<div class="form-group">
+    {{ form_label(form.category, null, {'label_attr': {'id': 'mar'}}) }}
+    {{ form_widget(form.category, {'attr': {'class': 'form-control'}, 'id': 'width', 'empty_data': null, 'placeholder': 'Без категории'}) }}
+</div>
+<div class="form-group">
+    {{ form_label(form.subcategory, null, {'label_attr': {'id': 'mar'}}) }}
+    {{ form_widget(form.subcategory, {'attr': {'class': 'form-control'}, 'id': 'width', 'required': false, 'empty_data': null, 'placeholder': 'Без подкатегории'}) }}
+</div>
+<div class="form-group">
+    {{ form_label(form.users, null, {'label_attr': {'id': 'authors-margin'}}) }}
+    {{ form_widget(form.users, {'attr': {'class': 'form-control', 'size': '5'}, 'id': 'width'}) }}
+</div>
+<div class="form-group">
+    {{ form_label(form.publicationDate) }}
+    {{ form_widget(form.publicationDate, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="form-check">
+    {{ form_label(form.active, null, {'label_attr': {'class': 'form-check-label'}}) }}
+    {{ form_widget(form.active, {'attr': {'class': 'form-check-input'}}) }}
+</div>
+<button class="btn btn-primary">{{ button_label|default('Сохранить') }}</button>
+<button class="btn" name="cancel" formnovalidate>{{ button_label|default('Отмена') }}</button>
+{{ form_rest(form) }}
+{{ form_end(form) }}
