@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\category;
+use App\Entity\Category;
 use App\Entity\Subcategory;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -16,8 +16,8 @@ class SubcategoryType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('category', EntityType::class, [
-                'class' => category::class,
+            ->add('Category', EntityType::class, [
+                'class' => Category::class,
                 'choice_label' => 'id',
             ])
         ;

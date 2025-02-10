@@ -10,11 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
-use Symfony\Config\Doctrine\Dbal\ConnectionConfig\ReplicaConfig;
 #[Route('/subcategory')]
 class SubcategoryController extends  AbstractController
 {
-    #[Route('/', name: 'app_category_index',methods: ['GET'])]
+    #[Route('/', name: 'app_subcategory_index',methods: ['GET'])]
     public function index (SubcategoryRepository $subcategoryRepository,):Response
     {
         return $this->render('subcategory/index.html.twig', [

@@ -2,6 +2,7 @@
     <link rel="stylesheet" href="{{ asset('css/custom_css.css') }}"/>
 {% endblock %}
 {{ form_start(form) }}
+
 <div class="form-group">
     {{ form_label(form.title) }}
     {{ form_widget(form.title, {'attr': {'class': 'form-control', 'placeholder': 'Название статьи'}}) }}
@@ -15,16 +16,16 @@
     {{ form_widget(form.content, {'attr': {'class': 'form-control', 'placeholder': 'Содержимое статьи', 'rows': 12}}) }}
 </div>
 <div class="form-group">
-    {{ form_label(form.category, null, {'label_attr': {'id': 'mar'}}) }}
-    {{ form_widget(form.category, {'attr': {'class': 'form-control'}, 'id': 'width', 'empty_data': null, 'placeholder': 'Без категории'}) }}
+    {{ form_label(form.Category, null, {'label_attr': {'id': 'mar'}}) }}
+    {{ form_widget(form.Category, {'attr': {'class': 'form-control'}, 'id': 'width', 'empty_data': null, 'placeholder': 'Без категории'}) }}
 </div>
 <div class="form-group">
-    {{ form_label(form.subcategory, null, {'label_attr': {'id': 'mar'}}) }}
-    {{ form_widget(form.subcategory, {'attr': {'class': 'form-control'}, 'id': 'width', 'required': false, 'empty_data': null, 'placeholder': 'Без подкатегории'}) }}
+    {{ form_label(form.Subcategory, null, {'label_attr': {'id': 'mar'}}) }}
+    {{ form_widget(form.Subcategory, {'attr': {'class': 'form-control'}, 'id': 'width', 'required': false, 'empty_data': null, 'placeholder': 'Без подкатегории'}) }}
 </div>
 <div class="form-group">
-    {{ form_label(form.users, null, {'label_attr': {'id': 'authors-margin'}}) }}
-    {{ form_widget(form.users, {'attr': {'class': 'form-control', 'size': '5'}, 'id': 'width'}) }}
+    {{ form_label(form.Users, null, {'label_attr': {'id': 'authors-margin'}}) }}
+    {{ form_widget(form.Users, {'attr': {'class': 'form-control', 'size': '5'}, 'id': 'width'}) }}
 </div>
 <div class="form-group">
     {{ form_label(form.publicationDate) }}

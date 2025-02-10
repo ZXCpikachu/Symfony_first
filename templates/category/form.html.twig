@@ -1,0 +1,15 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/my_custom.css') }}"/>
+{% endblock %}
+{{ form_start(form) }}
+<div class="form_group">
+    {{ form_label(form.name) }}
+    {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder':'Название категории'}}) }}
+</div>
+<div class="form_group">
+    {{ form_label(form.description) }}
+    {{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Описание категории', 'rows': '3'}}) }}
+</div>
+<button class="btn btn-primary">{{ button_label|default('Сохранить') }}</button>
+<button class="btn" name="cancel" formnovalidate>{{ button_label|default('Отмена') }}</button>
+{{ form_end(form) }}

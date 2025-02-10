@@ -11,11 +11,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[IsGranted('ROLE_ADMIN')]
+//#[IsGranted('ROLE_ADMIN')]
 #[Route('/article')]
 class ArticleController  extends AbstractController
 {
-    #[Route('/', name: 'app_article', methods: ['GET'])]
+    #[Route('/', name: 'app_article_index', methods: ['GET'])]
     public function index(ArticleRepository $articleRepository): Response
     {
         return $this->render('article/index.html.twig', [

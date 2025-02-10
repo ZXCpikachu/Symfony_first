@@ -1,0 +1,22 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/my_custom.css') }}"/>
+{% endblock %}
+{{ form_start(form) }}
+{% for error in form.name.vars.errors %}
+    <div class="alert alert-danger">Ошибка: {{ error.message }}</div>
+{% endfor %}
+<div class="form-group">
+    {{ form_label(form.name) }}
+    {{ form_widget(form.name , {'attr': {'class': 'form-control', 'placeholder': 'Название подкатегории'}}) }}
+</div>
+<div class="form-group">
+    {{ form_label(form.description) }}
+    {{ form_widget(form.description , {'attr': {'class': 'form-control', 'placeholder': 'Содержимое подкатегории', 'rows': 12}}) }}
+</div>
+<div class="form-group">
+    {{ form_label(form.Category, null, {'label_attr': {'id': 'margin'}}) }}
+    {{ form_widget(form.Category, {'attr': {'class': 'form-control'}, 'id': 'width', 'empty_data': null, 'placeholder': 'Без категории'}) }}
+</div>
+<button class="btn btn-primary">{{ button_label|default('Сохранить') }}</button>
+<button class="btn" name="cancel" formnovalidate>{{ button_label|default('Отмена') }}</button>
+{{ form_end(form) }}

@@ -13,7 +13,7 @@
     {% endblock %}
 </head>
 <body>
-{#{{ include('_nav_admin.html.twig') }}#}
+{{ include('nav_admin.html.twig') }}
 <div id="container">
     <div class="container">
         <a href="{{ path('app_homepage') }}">
@@ -23,7 +23,7 @@
         {% endblock %}
     </div>
     <div id="footer">
-{#        Простая PHP CMS &copy; 2017. Все права принадлежат всем. ;) <a href="{{ path('app_login') }}">Site Admin</a>#}
+       Простая PHP CMS &copy; 2017. Все права принадлежат всем. ;) <a href="{{ path('app_login') }}">Site Admin</a>
     </div>
 </div>
 </body>

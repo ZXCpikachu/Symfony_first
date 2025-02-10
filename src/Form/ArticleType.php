@@ -25,15 +25,15 @@ class ArticleType extends AbstractType
             ->add('active')
             ->add('Category', EntityType::class, [
                 'class' => Category::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
             ->add('Subcategory', EntityType::class, [
                 'class' => Subcategory::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
             ->add('Users', EntityType::class, [
                 'class' => User::class,
-                'choice_label' => 'id',
+                'choice_label' => 'login',
                 'multiple' => true,
             ])
         ;
