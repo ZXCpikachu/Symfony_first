@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    {{ include('user/includes/_users-nav.html.twig') }}
+    {% for message in app.flashes('user_success') %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+    <h2>Список пользователей</h2>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Логин</th>
+            <th>Администратор</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td><a href="{{ path('app_user_show', {id: user.id}) }}">{{ user.login }}</a></td>
+                <td>{{ user.roles|length > 1 ? 'ДА' : 'НЕТ' }}</td>
+                {#<td>{{ user.roles ? user.roles|json_encode : '' }}</td>#}
+                <td>
+                    {<a href="{{ path('app_user_show', {'id': user.id}) }}">Показать</a>}
+                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">[Редактировать]</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <p>Пользователей всего: {{ users|length }}</p>
+    {<a href="{{ path('app_user_new') }}">Create new</a>}
+{% endblock %}

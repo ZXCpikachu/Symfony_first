@@ -2,9 +2,6 @@
     <link rel="stylesheet" href="{{ asset('css/my_custom.css') }}"/>
 {% endblock %}
 {{ form_start(form) }}
-{% for error in form.name.vars.errors %}
-    <div class="alert alert-danger">Ошибка: {{ error.message }}</div>
-{% endfor %}
 <div class="form-group">
     {{ form_label(form.name) }}
     {{ form_widget(form.name , {'attr': {'class': 'form-control', 'placeholder': 'Название подкатегории'}}) }}
