@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-//#[IsGranted('ROLE_ADMIN')]
+#[IsGranted('ROLE_ADMIN')]
 #[Route('/user')]
 class UserController extends AbstractController
 {
@@ -51,7 +51,7 @@ class UserController extends AbstractController
         ]);
     }
     #[Route('/{id}/edit',name:'app_user_edit',methods: ['GET','POST'])]
-    public function edit(Request $request,EntityManagerInterface $entityManager,User $user): Response
+    public function edit(Request $request,EntityManagerInterface $entityManager,User $user, UserPasswordHasherInterface $passwordHasher ): Response
     {
         $form = $this->createForm(UserType::class, $user,['required'=>false]);
         if (null === $request->request->get('cancel')){
@@ -60,9 +60,14 @@ class UserController extends AbstractController
             return  $this->redirectToRoute('app_user_index',[],Response::HTTP_SEE_OTHER);
         }
         if ($form->isSubmitted() && $form->isValid()){
+            $plainPassword = $form->get('password')->getData();
+            if ($plainPassword) {
+                $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
+                $user->setPassword($hashedPassword);
+            }
             $entityManager->flush();
             $this->addFlash('user_success','Изменения сохранены');
-            return $this->json("Успешная обработка запроса");
+            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
         return $this->render('user/edit.html.twig',[
             'user' => $user,

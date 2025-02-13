@@ -11,8 +11,8 @@
     {{ form_widget(form.description , {'attr': {'class': 'form-control', 'placeholder': 'Содержимое подкатегории', 'rows': 12}}) }}
 </div>
 <div class="form-group">
-    {{ form_label(form.Category, null, {'label_attr': {'id': 'margin'}}) }}
-    {{ form_widget(form.Category, {'attr': {'class': 'form-control'}, 'id': 'width', 'empty_data': null, 'placeholder': 'Без категории'}) }}
+    {{ form_label(form.category, null, {'label_attr': {'id': 'margin'}}) }}
+    {{ form_widget(form.category, {'attr': {'class': 'form-control'}, 'id': 'width', 'empty_data': null, 'placeholder': 'Без категории'}) }}
 </div>
 <button class="btn btn-primary">{{ button_label|default('Сохранить') }}</button>
 <button class="btn" name="cancel" formnovalidate>{{ button_label|default('Отмена') }}</button>

@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}User index{% endblock %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/old_style.css') }}"/>
+{% endblock %}
 {% block body %}
-    {{ include('user/includes/_users-nav.html.twig') }}
+    {{ include('./nav_admin.html.twig')  }}
     {% for message in app.flashes('user_success') %}
         <div class="alert alert-success">{{ message }}</div>
     {% endfor %}
@@ -13,18 +15,21 @@
         <thead>
         <tr>
             <th>Логин</th>
-            <th>Администратор</th>
+            <th>Роль</th>
         </tr>
         </thead>
         <tbody>
+        {% set roleLabels = {
+            'ROLE_ADMIN': 'Администратор',
+            'ROLE_USER': 'Пользователь'
+        } %}
         {% for user in users %}
-            <tr>
+            <tr onclick="window.location.href='{{ path('app_user_edit', {'id': user.id}) }}'" style="cursor:pointer;">
                 <td><a href="{{ path('app_user_show', {id: user.id}) }}">{{ user.login }}</a></td>
-                <td>{{ user.roles|length > 1 ? 'ДА' : 'НЕТ' }}</td>
-                {#<td>{{ user.roles ? user.roles|json_encode : '' }}</td>#}
                 <td>
-                    {<a href="{{ path('app_user_show', {'id': user.id}) }}">Показать</a>}
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">[Редактировать]</a>
+                    {% for role in user.roles %}
+                        {{ roleLabels[role] | default(role) }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
                 </td>
             </tr>
         {% else %}
@@ -35,5 +40,5 @@
         </tbody>
     </table>
     <p>Пользователей всего: {{ users|length }}</p>
-    {<a href="{{ path('app_user_new') }}">Create new</a>}
+    <a href="{{ path('app_user_new') }}">Create new</a>
 {% endblock %}

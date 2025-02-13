@@ -1,5 +1,9 @@
 {% extends 'home.html.twig' %}
 {% block title %} Простая CMS на Symfony {% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom-style.css') }}">
+{% endblock %}
 {% block body %}
     <ul id="headlines">
         {% for article in articles %}

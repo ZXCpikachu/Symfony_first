@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use function Symfony\Component\VarDumper\Dumper\esc;
 
-//#[IsGranted('ROLE_ADMIN')]
+#[IsGranted('ROLE_ADMIN')]
 #[Route('/category')]
 class CategoryController extends AbstractController
 {

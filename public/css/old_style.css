@@ -121,11 +121,6 @@ h3.categoryDescription {
     float : right;
 }
 
-.newContent {
-    font-size : 14px;
-    float : right;
-}
-
 
 /* Заголовок для страницы администратора */
 
@@ -355,24 +350,4 @@ ul.ajax-load li {
     border: 1px solid #000; /* Рамка вокруг текста */
     padding: 3px; /* Поля вокруг текста */
     font-size: 12px;
-}
-
-#authors.category {
-    font-size: 90%;
-    margin-top: 3px;
-    color: #555
-}
-
-#width75 {
-    width: 75%
-}
-
-._italic {
-    font-style: italic
-}
-
-#authors-style {
-    font-style: italic;
-    margin: 5px;
-    color: #555
 }

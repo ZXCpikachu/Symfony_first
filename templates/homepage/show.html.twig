@@ -8,11 +8,11 @@
     <div id="width75">{{ article.content }}</div>
     <p class="pubDate">Published on {{ article.publicationDate|date('j F Y') }}
         in
-        <a href="{{ path('app_article_Category', {'id': article.Category.id ?? 0}) }}">
+        <a href="{{ path('app_article_category', {'id': article.Category.id ?? 0}) }}">
             {{ article.Category ?? "Без категории" }}
         </a>
         _
-        <a href="{{ path('app_article_Subcategory', {'id': article.Subcategory.id ?? 0}) }}">
+        <a href="{{ path('app_article_subcategory', {'id': article.Subcategory.id ?? 0}) }}">
             {{ article.Subcategory ?? "Без подкатегории" }}
         </a>
     </p>

@@ -1,45 +1,47 @@
-<!DOCTYPE html>
-<title>{% block title %}Hello LoginController!{% endblock %}</title>
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('css/my_custom_style.css') }}"/>
-{% endblock %}
+{# templates/login/new.html.twig #}
+{% extends 'base.html.twig' %}
 
-{% block javascripts %}
-    <script src="{{ asset('js/jquery-3.2.1.js') }}"></script>
-    <script defer src="{{ asset('js/showPass.js') }}"></script>
-{% endblock %}
+{% block title %}Вход в систему{% endblock %}
 
-<body>
-{{ include('login/nav_login.html.twig') }}
-<div class="container">
-    <h2>Регистрация/Вход в систему</h2>
-    <form action="{{ path('app_login') }}" method="post">
-        <div class="form-group">
-            {% if error %}
-                <div class="alert alert-danger">
-                    {{ error.messageKey|trans(error.messageData, 'security') }}
-                </div>
-            {% elseif access_denied %}
-                <div class="alert alert-danger">
-                    {{ access_denied }}
-                </div>
-            {% endif %}
+{% block body %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="mb-4 text-center">Вход в систему</h2>
+                <form action="{{ path('app_login_check') }}" method="post">
+                    {% if error %}
+                        <div class="alert alert-danger">
+                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                        </div>
+                    {% endif %}
+                    <div class="form-group mb-3">
+                        <label for="login">Имя пользователя</label>
+                        <input type="text"
+                               class="form-control"
+                               id="login"
+                               name="login"
+                               value="{{ last_username }}"
+                               required autofocus>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="password">Пароль</label>
+                        <input type="password"
+                               class="form-control"
+                               id="password"
+                               name="_password"
+                               required>
+                    </div>
+                    <div class="form-group form-check mb-3">
+                        <input type="checkbox"
+                               class="form-check-input"
+                               id="remember_me"
+                               name="_remember_me">
+                        <label class="form-check-label" for="remember_me">Запомнить меня</label>
+                    </div>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <button type="submit" class="btn btn-primary w-100">Войти</button>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="username">Введите имя пользователя</label>
-            <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" required />
-        </div>
-        <div class="form-group">
-            <label for="password">Введите пароль</label>
-            <input type="password" id="password" name="_password" class="form-control" required />
-            <label id="margin-check"><input type="checkbox" class="password"> Показать пароль</label>
-        </div>
-        {#<input type="hidden" name="_target_path" value="{{ path('app_article_index') }}"/>#}
-        <button type="submit" class="btn btn-primary">Сохранить</button>
-        {#<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">#}
-    </form>
-</div>
-{{ include('footer.html.twig') }}
-</body>
+    </div>
+{% endblock %}

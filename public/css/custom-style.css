@@ -1,0 +1,87 @@
+
+body {
+    background: linear-gradient(135deg, #74ABE2, #5563DE);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+
+.container {
+    max-width: 500px;
+    margin: 80px auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+}
+
+
+h2 {
+    text-align: center;
+    font-weight: 600;
+    color: #444;
+}
+
+
+form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 12px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #5563DE;
+    box-shadow: 0 0 0 3px rgba(85, 99, 222, 0.2);
+}
+
+.btn-primary {
+    background-color: #5563DE;
+    border-color: #5563DE;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #434ec0;
+    border-color: #434ec0;
+}
+.alert {
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    color: #fff;
+}
+.navbar {
+    background-color: #333;
+}
+.navbar-nav {
+    flex-direction: row-reverse !important;
+}
+
+.navbar .nav-link {
+    color: #fff !important;
+
+}
+
+.navbar .nav-link:hover {
+    color: #74ABE2 !important;
+}

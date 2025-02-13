@@ -1,8 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Subcategory index{% endblock %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/old_style.css') }}"/>
+{% endblock %}
 {% block body %}
+    {{ include('./nav_admin.html.twig')  }}
     <h1>Subcategory index</h1>
 
     <table class="table">
@@ -11,19 +14,14 @@
             <th>Name</th>
             <th>Содержание</th>
             <th>Категория</th>
-            <th>actions</th>
         </tr>
         </thead>
         <tbody>
         {% for subcategory in subcategories %}
-            <tr>
+            <tr onclick="window.location.href='{{ path('app_subcategory_edit', {'id': subcategory.id}) }}'" style="cursor:pointer;">
                 <td>{{ subcategory.name }}</td>
                 <td>{{ subcategory.description }}</td>
                 <td>{{ subcategory.Category.name ?? 'Без категории' }}</td>
-                <td>
-                    <a href="{{ path('app_subcategory_show', {'id': subcategory.id}) }}">show</a>
-                    <a href="{{ path('app_subcategory_edit', {'id': subcategory.id}) }}">edit</a>
-                </td>
             </tr>
         {% else %}
             <tr>

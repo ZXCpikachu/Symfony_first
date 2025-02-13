@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block title %}Category index {% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/old_style.css') }}"/>
+{% endblock %}
 {% block body %}
+    {{ include('./nav_admin.html.twig')  }}
     <h2>Список категорий</h2>
     <table class="table">
         <thead>
@@ -12,14 +16,11 @@
         </thead>
         <tbody>
         {% for category in categories %}
-            <tr>
+            <tr onclick="window.location.href='{{ path('app_category_edit', {'id': category.id}) }}'" style="cursor:pointer;">
+
                 <td>{{ category.id }}</td>
                 <td>{{ category.name }}</td>
                 <td>{{ category.description }}</td>
-                <td>
-                    <a href="{{ path('app_category_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
-                </td>
             </tr>
         {% else %}
             <tr>

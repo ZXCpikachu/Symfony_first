@@ -1,34 +1,49 @@
 {% extends 'base.html.twig' %}
-{% block title %}Article index {% endblock %}
+{% block title %}Article index{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/old_style.css') }}"/>
+{% endblock %}
 {% block body %}
-    {{ include('article/includes/article-nav.html.twig')  }}
+    {{ include('./nav_admin.html.twig') }}
     <h2>Список статей</h2>
     <table class="table">
         <thead>
-            <tr>
-                <th>Дата публикации</th>
-                <th>Название</th>
-                <th>Категория</th>
-                <th>Подкатегория</th>
-                <th>Активность</th>
-            </tr>
+        <tr>
+            <th>Дата публикации</th>
+            <th>Название</th>
+            <th>Категория</th>
+            <th>Подкатегория</th>
+            <th>Автор</th>
+            <th>Активность</th>>
+        </tr>
         </thead>
         <tbody>
         {% for article in articles %}
-            <tr>
+            <tr onclick="window.location.href='{{ path('app_article_edit', {'id': article.id}) }}'" style="cursor:pointer;">
                 <td>{{ article.publicationDate ? article.publicationDate|date('j M Y') : '' }}</td>
-                <td><a href="{{ path('app_article_show', {id:article.id}) }}">{{ article.title }}</a></td>
+                <td>
+                    <a href="{{ path('app_article_show', {id: article.id}) }}" onclick="event.stopPropagation();">
+                        {{ article.title }}
+                    </a>
+                </td>
                 <td>{{ article.category.name ?? 'Без категории' }}</td>
                 <td>{{ article.subcategory.name ?? 'Без подкатегории' }}</td>
+                <td>
+                    {% if article.users|length %}
+                        {{ article.users|join(', ') }}
+                    {% else %}
+                        Не указан
+                    {% endif %}
+                </td>
                 <td>{{ article.active ? 'Активна' : 'Не активна' }}</td>
-                <td> <a href="{{ path('app_article_edit', {'id': article.id}) }}">[Редактировать]</a> </td>
             </tr>
         {% else %}
             <tr>
-                <td>Ничего не найдено</td>
+                <td colspan="6">Ничего не найдено</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    <p>Статей всего {{ articles|length }}</p>
+    <a href="{{ path('app_article_new') }}">Создать статью</a>
+    <p>Статей всего: {{ articles|length }}</p>
 {% endblock %}
