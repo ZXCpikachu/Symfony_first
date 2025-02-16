@@ -2,6 +2,9 @@
     <script src="{{ asset('js/jquery-3.2.1.js') }}"></script>
     <script src="{{ asset('js/sendPOSTData.js') }}"></script>
 {% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{{ asset('css/old_style.css') }}"/>
+{% endblock %}
 {{ form_start(form) }}
 <div class="form-group">
     {{ form_row(form.login, {'attr': {'class': 'form-control', 'placeholder': 'Логин пользователя' }}) }}
@@ -11,13 +14,22 @@
 </div>
 <div class="form-group">
     <label>Роли</label>
-    {% for role in form.roles %}
-        <div class="form-check">
-            {{ form_widget(role, {'attr': {'class': 'form-check-input'}}) }}
-            {{ form_label(role, null, {'attr': {'class': 'form-check-label'}}) }}
-        </div>
-    {% endfor %}
+    {{ form_widget(form.roles, {'attr': {'class': 'form-control'}}) }}
 </div>
-<button class="btn btn-primary">{{ button_label|default('Сохранить') }}</button>
-<button class="btn" name="cancel" formnovalidate>{{ button_label|default('Отмена') }}</button>
+<div class="form-actions" style="margin-top: 20px;">
+    <button class="btn btn-primary">{{ button_label|default('Сохранить') }}</button>
+    <button class="btn" name="cancel" formnovalidate>{{ button_label|default('Отмена') }}</button>
+    {% if user.id %}
+        <button type="button" class="btn btn-danger"
+                onclick="if(confirm('Вы уверены что хотите удалить пользователя?')){document.getElementById('deleteForm').submit()}">
+            Удалить пользователя
+        </button>
+    {% endif %}
+</div>
 {{ form_end(form) }}
+
+ {% if user.id %}
+     <form id="deleteForm" method="post" action="{{ path('app_user_delete', {'id':user.id}) }}" style="display: none">
+         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+     </form>
+ {% endif %}

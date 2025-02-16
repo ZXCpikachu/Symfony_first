@@ -3,9 +3,5 @@
 {% block title %}New Subcategory{% endblock %}
 
 {% block body %}
-    <h1>Новая подкатегория</h1>
-
     {{ include('subcategory/form.html.twig') }}
-
-    <a href="{{ path('app_subcategory_index') }}">back to list</a>
 {% endblock %}

@@ -1,7 +1,10 @@
 {% extends 'home.html.twig' %}
 
 {% block title %}{{ pageHeading }} | Widget News{% endblock %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/custom-style.css') }}">
+{% endblock %}
 {% block body %}
     <h1>{{ pageHeading }}</h1>
     <h3 class="categoryDescription">{{ description ?? ' '}}</h3>
@@ -41,4 +44,5 @@
     </ul>
     <p>{{ articles|length }} article{{ articles|length > 1 ? 's' }} in total.</p>
     <p><a href="{{ path('app_homepage') }}">Return to Homepage</a></p>
+    {% include './footer.html.twig' %}
 {% endblock %}

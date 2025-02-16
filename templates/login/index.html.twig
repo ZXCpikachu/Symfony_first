@@ -1,13 +1,14 @@
-{# templates/login/new.html.twig #}
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Вход в систему{% endblock %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/old_style.css') }}"/>
+{% endblock %}
 {% block body %}
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <h2 class="mb-4 text-center">Вход в систему</h2>
                 <form action="{{ path('app_login_check') }}" method="post">
                     {% if error %}
                         <div class="alert alert-danger">

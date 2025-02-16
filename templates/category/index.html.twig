@@ -1,11 +1,21 @@
 {% extends 'base.html.twig' %}
 {% block title %}Category index {% endblock %}
 {% block stylesheets %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/old_style.css') }}"/>
 {% endblock %}
 {% block body %}
     {{ include('./nav_admin.html.twig')  }}
-    <h2>Список категорий</h2>
+    <div class="white-block">
+    <div id="container">
+        <div class="container">
+            <a href="{{ path('app_homepage') }}">
+                <img id="logo" src="{{ asset('images/logo.jpg') }}" alt="Widget News" />
+            </a>
+            <hr class="separator">
+        </div>
+    </div>
+        <h2>Список категорий</h2>
     <table class="table">
         <thead>
         <tr>
@@ -30,4 +40,5 @@
         </tbody>
     </table>
     <a href="{{ path('app_category_new') }}">Create new</a>
+    </div>
 {% endblock %}

@@ -17,6 +17,15 @@ body {
     -webkit-border-radius: 5px;
     border-radius: 5px;
 }
+.white-block {
+    max-width: 1000px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 
 
 /* Логотип и нижний колонтитул */
@@ -24,11 +33,12 @@ body {
 #logo {
     display: block;
     width: 300px;
-    padding: 0 660px 20px 0;
-    border: none;
-    border-bottom: 1px solid #00a0b0;
+    height: auto;
+    box-sizing: border-box;
     margin-bottom: 40px;
+    border: none;
 }
+
 
 #footer {
     border-top: 1px solid #00a0b0;
@@ -136,6 +146,7 @@ h3.categoryDescription {
 /* Стили для формы с цветным фоном, скругленными углами и тенью */
 
 form {
+    max-width: 1250px;
     margin: 20px auto;
     padding: 40px 20px;
     overflow: auto;
@@ -148,6 +159,10 @@ form {
     -webkit-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
     box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
 }
+.form-group {
+    margin-bottom: 10px;
+}
+
 
 
 /* Задаем для элементов формы согласованные поля, отступы, и высоту строки */
@@ -166,6 +181,14 @@ form ul li {
 form * {
     line-height: 1em;
 }
+
+.navbar-nav {
+    flex-direction: row;
+}
+.navbar-nav .nav-item {
+    margin-right: 15px;
+}
+
 
 
 /* Метки полей */
@@ -226,6 +249,11 @@ textarea#content {
 form *:focus {
     border: 2px solid #7c412b;
     outline: none;
+}
+.separator {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
 }
 
 

@@ -27,15 +27,17 @@ class ArticleController  extends AbstractController
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class,$article);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            if(null === $request->request->get('cancel')){
+        if (null === $request->request->get('cancel')){
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()){
                 $entityManager->persist($article);
                 $entityManager->flush();
+                return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
             }
-            return $this->redirectToRoute('app_article_index',[],Response::HTTP_SEE_OTHER);
+        } else {
+            return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
         }
+
         return $this->render('article/new.html.twig',[
             'article' => $article,
             'form' => $form,
@@ -52,18 +54,18 @@ class ArticleController  extends AbstractController
     public function edit(Request $request, Article $article ,EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ArticleType::class,$article);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            if (null === $request->request->get('cancel'))
-            {
+        if (null === $request->request->get('cancel')){
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
                 $entityManager->flush();
+                return $this->redirectToRoute('app_article_index',[],Response::HTTP_SEE_OTHER);
             }
+        }else {
             return $this->redirectToRoute('app_article_index',[],Response::HTTP_SEE_OTHER);
         }
-        return $this->render('article/edit.html.twig',[
+        return  $this->render('/article/edit.html.twig',[
             'article' => $article,
-            'form' => $form,
+            'form' => $form
         ]);
     }
     #[Route('/{id}/delete', name: 'app_article_delete', methods: ['POST'])]

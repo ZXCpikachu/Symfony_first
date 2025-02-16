@@ -1,7 +1,7 @@
 {% extends 'home.html.twig' %}
 {% block title %} Простая CMS на Symfony {% endblock %}
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/custom-style.css') }}">
 {% endblock %}
 {% block body %}
@@ -58,4 +58,6 @@
         {% endfor %}
     </ul>
     <p><a href="{{ path('app_homepage_archive') }}">Article Archive</a></p>
+    {% include './footer.html.twig' %}
+
 {% endblock %}

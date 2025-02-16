@@ -1,9 +1,5 @@
 {% extends 'base.html.twig' %}
 {% block title %}Edit User {% endblock %}
 {% block body %}
-    {{ include('/user/includes/user-nav.html.twig') }}
-    <h2>Edit User</h2>
     {{ include('/user/form.html.twig') }}
-    <a href=" {{ path('app_user_index') }}">Back to user list</a>
-    {{ include('user/delete_form.html.twig') }}
 {% endblock %}

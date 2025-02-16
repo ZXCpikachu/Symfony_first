@@ -1,8 +1,5 @@
 {% extends 'base.html.twig' %}
 {% block title %}Edit Subcategory {% endblock %}
 {% block body %}
-    <h2>Edit Subcategory</h2>
     {{ include('/subcategory/form.html.twig') }}
-    <a href="{{ path('app_subcategory_index') }}">Back to list</a>
-    {{ include ('/subcategory/delete_form.html.twig') }}
 {% endblock %}

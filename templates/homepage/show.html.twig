@@ -1,5 +1,8 @@
 {% extends 'home.html.twig' %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/custom-style.css') }}">
+{% endblock %}
 {% block title %}{{ article.title }} | Простая CMS{% endblock %}
 
 {% block body %}
@@ -27,4 +30,5 @@
         </p>
     {% endif %}
     <p><a href="{{ path('app_homepage') }}">Вернуться на главную страницу</a></p>
+    {% include './footer.html.twig' %}
 {% endblock %}

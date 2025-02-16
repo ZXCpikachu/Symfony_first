@@ -9,17 +9,25 @@ body {
 
 
 .container {
-    max-width: 500px;
+    max-width: 1000px !important;
     margin: 80px auto;
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 25px;
+    padding: 10px;
+}
+.content-container {
+    max-width: 960px;
+    margin: 80px auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 10px;
 }
 
 
+
 h2 {
-    text-align: center;
     font-weight: 600;
     color: #444;
 }
@@ -65,10 +73,17 @@ form {
     font-size: 14px;
 }
 
-footer {
-    text-align: center;
+.footer {
+    text-align: left;
     padding: 20px 0;
     color: #fff;
+}
+.footer .container {
+
+}
+
+.footer-text {
+    color: #cbc4c4;
 }
 .navbar {
     background-color: #333;

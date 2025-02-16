@@ -1,8 +1,5 @@
 {% extends 'base.html.twig' %}
 {% block title %}New Article {% endblock %}
 {% block body %}
-    {{ include ('article/includes/article-nav.html.twig') }}
-    <h2> Новая статья </h2>
     {{ include ('article/form.html.twig') }}
-    <a href="{{ path('app_article_index') }}">К списку статей</a>
 {% endblock %}

@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block title  %}Edit Article {% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/old_style.css') }}">
+{% endblock %}
+
 {% block body %}
-    {{ include('article/includes/article-nav.html.twig')  }}
-    {{ include('article/delete_form.html.twig') }}
     {{ include ('article/form.html.twig') }}
 {% endblock %}

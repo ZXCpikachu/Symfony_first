@@ -1,5 +1,5 @@
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/my_custom.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/old_style.css') }}"/>
 {% endblock %}
 {{ form_start(form) }}
 <div class="form-group">
@@ -11,9 +11,23 @@
     {{ form_widget(form.description , {'attr': {'class': 'form-control', 'placeholder': 'Содержимое подкатегории', 'rows': 12}}) }}
 </div>
 <div class="form-group">
-    {{ form_label(form.category, null, {'label_attr': {'id': 'margin'}}) }}
+    {{ form_label(form.category, null, {'label_attr': {'name': 'margin'}}) }}
     {{ form_widget(form.category, {'attr': {'class': 'form-control'}, 'id': 'width', 'empty_data': null, 'placeholder': 'Без категории'}) }}
 </div>
-<button class="btn btn-primary">{{ button_label|default('Сохранить') }}</button>
-<button class="btn" name="cancel" formnovalidate>{{ button_label|default('Отмена') }}</button>
+<div class="form-actions" style="margin-top: 20px">
+    <button class="btn btn-primary">{{ button_label|default('Сохранить') }}</button>
+    <button class="btn" name="cancel" formnovalidate>{{ button_label|default('Отмена') }}</button>
+    {% if subcategory.id %}
+    <button type="button" class="btn btn-danger"
+            onclick="if(confirm('Вы уверены что хотите удалить подкатегорию?')){document.getElementById('deleteForm').submit()}">
+        Удалить подкатегорию
+    </button>
+    {% endif %}
+</div>
 {{ form_end(form) }}
+
+    {% if subcategory.id %}
+    <form id="deleteForm" method="post" action="{{ path('app_subcategory_delete', {'id':subcategory.id}) }}" style="display: none">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ subcategory.id) }}">
+    </form>
+    {% endif %}

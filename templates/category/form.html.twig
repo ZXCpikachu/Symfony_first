@@ -1,5 +1,5 @@
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/my_custom.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/old_style.css') }}"/>
 {% endblock %}
 {{ form_start(form) }}
 <div class="form_group">
@@ -10,6 +10,19 @@
     {{ form_label(form.description) }}
     {{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Описание категории', 'rows': '3'}}) }}
 </div>
-<button class="btn btn-primary">{{ button_label|default('Сохранить') }}</button>
-<button class="btn" name="cancel" formnovalidate>{{ button_label|default('Отмена') }}</button>
+<div class="form-actions" style="margin-top: 20px;">
+    <button class="btn btn-primary">{{ button_label|default('Сохранить') }}</button>
+    <button class="btn" name="cancel" formnovalidate>{{ button_label|default('Отмена') }}</button>
+    {% if category.id %}
+    <button type="button" class="btn-danger"
+            onclick="if(confirm('Вы уверены, что хотите удалить категорию?')){document.getElementById('deleteForm').submit();}">
+            Удалить Категорию
+    </button>
+    {% endif %}
+</div>
 {{ form_end(form) }}
+    {% if category.id %}
+        <form id="deleteForm" method="post" action="{{ path('app_category_delete', {'id':category.id}) }}" style="display: none">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
+        </form>
+    {% endif %}

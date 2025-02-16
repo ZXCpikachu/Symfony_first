@@ -1,6 +1,7 @@
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/custom_css.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/old_style.css') }}">
 {% endblock %}
+
 {{ form_start(form) }}
 
 <div class="form-group">
@@ -31,11 +32,25 @@
     {{ form_label(form.publicationDate) }}
     {{ form_widget(form.publicationDate, {'attr': {'class': 'form-control'}}) }}
 </div>
-<div class="form-check">
+<div class="form-check" style="display: flex; align-items: center; margin-bottom: 20px;">
     {{ form_label(form.active, null, {'label_attr': {'class': 'form-check-label'}}) }}
-    {{ form_widget(form.active, {'attr': {'class': 'form-check-input'}}) }}
+    {{ form_widget(form.active, {'attr': {'class': 'form-check-input', 'style': 'margin-left: -450px;'}}) }}
 </div>
-<button class="btn btn-primary">{{ button_label|default('Сохранить') }}</button>
-<button class="btn" name="cancel" formnovalidate>{{ button_label|default('Отмена') }}</button>
+<div class="form-actions" style="margin-top: 20px;">
+    <button type="submit" name="save" class="btn btn-primary">Сохранить</button>
+    <button type="submit" name="cancel" formnovalidate class="btn btn-secondary">Отмена</button>
+    {% if article.id %}
+    <button type="button" class="btn btn-danger"
+            onclick="if(confirm('Вы уверены, что хотите удалить статью?')) { document.getElementById('deleteForm').submit(); }">
+        Удалить статью
+    </button>
+    {% endif %}
+</div>
 {{ form_rest(form) }}
 {{ form_end(form) }}
+
+{% if article.id %}
+    <form id="deleteForm" method="post" action="{{ path('app_article_delete', {'id': article.id}) }}" style="display: none;">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+    </form>
+{% endif %}

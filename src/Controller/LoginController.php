@@ -10,7 +10,7 @@ class LoginController extends AbstractController
 {
     #[Route('/login', name: 'app_login')]
     public function index(AuthenticationUtils $authenticationUtils): Response
-    {	print_r($_POST);
+    {
         $access_denied = false;
         if ($this->isGranted("ROLE_ADMIN")) {
             return $this->redirectToRoute('app_article_index');

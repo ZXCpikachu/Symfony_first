@@ -1,49 +1,64 @@
 {% extends 'base.html.twig' %}
 {% block title %}Article index{% endblock %}
 {% block stylesheets %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/old_style.css') }}"/>
 {% endblock %}
 {% block body %}
     {{ include('./nav_admin.html.twig') }}
+    <div class="white-block">
+        <div id="container">
+            <div class="container">
+                <a href="{{ path('app_homepage') }}">
+                    <img id="logo" src="{{ asset('images/logo.jpg') }}" alt="Widget News" />
+                </a>
+                <hr class="separator">
+            </div>
+        </div>
     <h2>Список статей</h2>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Дата публикации</th>
-            <th>Название</th>
-            <th>Категория</th>
-            <th>Подкатегория</th>
-            <th>Автор</th>
-            <th>Активность</th>>
-        </tr>
-        </thead>
-        <tbody>
-        {% for article in articles %}
-            <tr onclick="window.location.href='{{ path('app_article_edit', {'id': article.id}) }}'" style="cursor:pointer;">
-                <td>{{ article.publicationDate ? article.publicationDate|date('j M Y') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_article_show', {id: article.id}) }}" onclick="event.stopPropagation();">
-                        {{ article.title }}
-                    </a>
-                </td>
-                <td>{{ article.category.name ?? 'Без категории' }}</td>
-                <td>{{ article.subcategory.name ?? 'Без подкатегории' }}</td>
-                <td>
-                    {% if article.users|length %}
-                        {{ article.users|join(', ') }}
-                    {% else %}
-                        Не указан
-                    {% endif %}
-                </td>
-                <td>{{ article.active ? 'Активна' : 'Не активна' }}</td>
-            </tr>
-        {% else %}
+
+
+        <table class="table">
+            <thead>
             <tr>
-                <td colspan="6">Ничего не найдено</td>
+                <th>Дата публикации</th>
+                <th>Название</th>
+                <th>Категория</th>
+                <th>Подкатегория</th>
+                <th>Автор</th>
+                <th>Активность</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+                <tr onclick="window.location.href='{{ path('app_article_edit', {'id': article.id}) }}'" style="cursor:pointer;">
+                    <td>{{ article.publicationDate ? article.publicationDate|date('j M Y') : '' }}</td>
+                    <td>
+                        <a href="{{ path('app_article_show', {id: article.id}) }}" onclick="event.stopPropagation();">
+                            {{ article.title }}
+                        </a>
+                    </td>
+                    <td>{{ article.category.name ?? 'Без категории' }}</td>
+                    <td>{{ article.subcategory.name ?? 'Без подкатегории' }}</td>
+                    <td>
+                        {% if article.users|length %}
+                            {{ article.users|join(', ') }}
+                        {% else %}
+                            Не указан
+                        {% endif %}
+                    </td>
+                    <td>{{ article.active ? 'Активна' : 'Не активна' }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">Ничего не найдено</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
     <a href="{{ path('app_article_new') }}">Создать статью</a>
     <p>Статей всего: {{ articles|length }}</p>
+    </div>
 {% endblock %}

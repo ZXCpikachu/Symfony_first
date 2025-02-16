@@ -19,7 +19,7 @@ class UserType extends AbstractType
                     'Администратор' => 'ROLE_ADMIN',
                     'Пользователь' => 'ROLE_USER',
                 ],
-                'expanded' => true,
+                'expanded' => false,
                 'multiple' => true,
             ])
             ->add('password')
