@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}Edit User {% endblock %}
 {% block body %}
+    {{ include('./nav_admin.html.twig') }}
     {{ include('/user/form.html.twig') }}
 {% endblock %}
